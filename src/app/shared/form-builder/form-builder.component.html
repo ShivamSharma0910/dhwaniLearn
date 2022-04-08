@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <div class="container">
+                <label>Add New Filed</label>&nbsp;
+                <button type="button" (click)="addNewRow()" class="btn btn-primary">+</button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="container">
+                <label>Clear Form Data</label>&nbsp;
+                <button type="button" (click)="clearArray()" class="btn btn-primary">0</button>
+            </div>
+        </div>
+    </div>
+    <br/><br/><br/>
+    <div class="container">
+        <form [formGroup]="assignmentForm">
+            <table border=1>
+                <thead>
+                    <th>Id</th>
+                    <th>Subject</th>
+                    <th>Submitted (yes / no)</th>
+                    <th>Teacher Name</th>
+                    <th>Action</th>
+                </thead>
+                <tbody formArrayName="SubjectTeacher">
+                    <tr *ngFor="let itemrow of assignmentForm.controls.SubjectTeacher.controls; let i=index;let l=last"
+                        [formGroupName]="i">
+                        <td>{{i+1}}</td>
+                        <td>
+                            <input formControlName="name" class="form-control">
+                        </td>
+                        <td>
+                            <input type="checkbox" formControlName="Submitted" class="form-control">
+
+                        </td>
+                        <td>
+                            <input formControlName="TeacherName" class="form-control">
+                        </td>
+                        <td>
+                            &nbsp; <button *ngIf="assignmentForm.controls.SubjectTeacher.controls.length > 1"
+                                (click)="deleteRow(i)" class="btn btn-danger">-</button>
+                            <i class="bi bi-trash"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+
+</div>
+<br />
+<br />

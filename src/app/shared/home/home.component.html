@@ -1,0 +1,8 @@
+<p>Parent Component</p>
+<!-- 
+      <pre>{{uniqueAddresses | json}}</pre> -->
+
+<!-- <pre>{{ userData | json}}</pre> -->
+<hr>
+
+<app-chlid  [count]='uniqueAddresses' [ChildheadingData]="headingData" (rowData)="getResponce($event)"></app-chlid>

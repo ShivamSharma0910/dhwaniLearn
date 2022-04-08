@@ -1,0 +1,125 @@
+<div class="container">
+    <h1>Reactive Forms</h1>
+    <form [formGroup]="profileForm" (ngSubmit)="submit()">
+
+        <div class="form-group">
+            <label for="firstname">First Name </label>
+            <input type="text" id="firstname" name="firstname" formControlName="firstname" class="form-control">
+            <div *ngIf="firstname?.invalid && (firstname?.dirty || firstname?.touched)" class="alert alert-danger">
+                <div [hidden]="!firstname?.errors?.['required']">First Name is required</div>
+                <div [hidden]="!firstname?.errors?.['minlength']">Min Length is </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input formControlName="age" id="age" type="text" class="form-control">
+            <div *ngIf="!age?.valid && (age?.dirty ||age?.touched)" class="alert alert-danger">
+                <div [hidden]="!age?.errors?.['required']">Age is required.</div>
+                <div [hidden]="!age?.errors?.['minlength']">Age should be 2 character.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Course">Course</label>
+            <input formControlName="course" id="course" type="text" class="form-control">
+                <div *ngIf="!course?.valid && (course?.dirty ||course?.touched)" class="alert alert-danger">
+                    <div [hidden]="!course?.errors?.['required']">course is required.</div>
+                    <div [hidden]="!course?.errors?.['minlength']">course should be 2 character.</div>
+                </div>
+            </div>
+
+        <div class="form-group">
+            <label for="phone">Phone No</label>
+            <input formControlName="phone" id="phone" type="text" class="form-control">
+               <div *ngIf="!phone?.valid && (phone?.dirty ||phone?.touched)" class="alert alert-danger">
+                    <div [hidden]="!phone?.errors?.['required']">phone is required.</div>
+                    <div [hidden]="!phone?.errors?.['minlength']">phone should be 2 character.</div>
+                </div>
+        </div>
+
+        <div class="form-group" formGroupName="address">
+            <label for="state">city</label>
+            <input formControlName="city" name="city" id="city" type="text" class="form-control">
+            <div *ngIf="city?.invalid && (city?.dirty || city?.touched)" class="alert alert-danger">
+                <div [hidden]="!city?.errors?.['required']">city is required. </div>
+                <div [hidden]="!city?.errors?.['minlength']">city should be 2 character. </div>
+            </div>
+
+        </div>
+        <div class="form-group" formGroupName="address">
+            <label for="states">State</label>
+            <input formControlName="states" id="states" type="text" class="form-control">
+            <div *ngIf="states?.invalid && (states?.dirty || states?.touched)" class="alert alert-danger">
+                <div [hidden]="!states?.errors?.['required']">states is required. </div>
+                <div [hidden]="!states?.errors?.['minlength']">states should be 2 character.</div>
+            </div>
+        </div>
+
+        <div formArrayName="AssignmentData">
+            <h2>Aliases</h2>
+            <button type="button" (click)="addNewRow()">+ Add another alias</button>
+          
+         <div >
+                <div class="form-group" >
+                    <label for="subjectname">Subject</label>
+                    <input formControlName="subjectname" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="teacherName">Teacher Name</label>
+                    <input formControlName="teacherName" id="teacherName" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="iSsubmitted">IsSubmit</label>&nbsp;
+                    <input formControlName="iSsubmitted" id="iSsubmitted" type="checkbox">
+                </div>
+        </div>
+        </div>
+        <!-- <button class="btn btn-primary" [disabled]="!profileForm?.valid" type="submit">Submit</button> -->
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+</div>
+<br>
+
+<!-- <div class="container">
+    <form [formGroup]="profileForm">
+        <table border=1>
+            <thead>
+                <th>Id</th>
+                <th>Subject</th>
+                <th>Submitted (yes / no)</th>
+                <th>Teacher Name</th>
+                <th>Action</th>
+            </thead>
+            <tbody formArrayName="SubjectTeacher">
+                <tr >
+                
+                    <td>
+                        <input formControlName="name" class="form-control">
+                    </td>
+                    <td>
+                        <input type="checkbox" formControlName="Submitted" class="form-control">
+
+                    </td>
+                    <td>
+                        <input formControlName="TeacherName" class="form-control">
+                    </td>
+                  
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div> -->
+
+<!-- 
+<h3>Form Status</h3>
+<b>valid : </b>{{profileForm.valid}}
+<b>invalid : </b>{{profileForm.invalid}}
+<b>touched : </b>{{profileForm.touched}}
+<b>untouched : </b>{{profileForm.untouched}}
+<b>pristine : </b>{{profileForm.pristine}}
+<b>dirty : </b>{{profileForm.dirty}}
+<b>disabled : </b>{{profileForm.disabled}}
+<b>enabled : </b>{{profileForm.enabled}}
+
+<h3>Form Value</h3>
+{{profileForm.value |json}} -->

@@ -1,0 +1,26 @@
+
+<h2>Child Component</h2>
+<!-- current count is {{ count | json }} -->
+ {{ ChildheadingData | json }} 
+
+
+<hr>
+<table class="table">
+    <thead>
+      <tr  >
+        <th scope="col">#</th>
+        <th *ngFor = 'let childhead of ChildheadingData'>{{childhead.name}}</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of count; let i=index">
+        <th scope="row">{{i+1}}</th>
+        <td *ngFor = 'let childhead of ChildheadingData'>{{item[childhead.valueAccessKey]}}</td>
+        <td> <button mat-button (click)="openDialog(item)">Edit</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  
+ 
